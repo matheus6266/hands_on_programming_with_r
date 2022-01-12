@@ -191,3 +191,99 @@ hand_1 <- c("ace", "king", "queen", "jack", "ten",
             "spades", "spades", "spades", "spades", "spades")
 
 matrix(hand_1, nrow = 5)
+
+# Criando classes
+# Note que mudando as dimensões do objeto não mudam
+# o tipo, mas mudam a classe do objeto
+
+x3 <- c(1, 2, 3, 4, 5, 6)
+
+dim(x3) <- c(2,3)
+
+# Verificando o tipo do objeto
+
+typeof(x3)
+
+# Verificando a classe do objeto
+
+class(x3)
+
+# Data e horário
+
+now <- Sys.time()
+
+# Verificando o tipo
+
+typeof(now)
+
+# Verificando a classe
+
+class(now)
+
+# Fatores são usados para armanezar informações categóricas, como a cor dos olhos
+
+gender <- factor(c("male", "female", "female", "male"))
+
+typeof(gender)
+
+attributes(gender)
+
+# Transformando "factor" em "character"
+
+as.character(gender)
+
+# Coerção - se existe algum character no vetor, tudo se transforma para o tipo vetor
+# se existir algum item lógico, ele se tranforma no tipo numérico
+
+card <- c("ace", "hearts", 1)
+
+typeof(card)
+
+
+# Listas conseguem criar vetores com tipos diferentes de dados
+
+list1 <- list(100:130, "R", list(TRUE, FALSE))
+
+list1
+
+# Data frames são similiares a uma tabela no Execel, cada vetor se torna uma coluna
+# Os vetores devem ter o mesmo tamanho
+
+df <- data.frame(face = c("ace", "two", "six"),
+                 suit = c("clubs", "clubs", "clubs"),
+                 value = c(1, 2, 3))
+
+df
+
+# Criando o baralho manualmente
+
+deck <- data.frame(
+  face = c("king", "queen", "jack", "ten", "nine", "eight", "seven", "six",
+           "five", "four", "three", "two", "ace", "king", "queen", "jack", "ten",
+           "nine", "eight", "seven", "six", "five", "four", "three", "two", "ace",
+           "king", "queen", "jack", "ten", "nine", "eight", "seven", "six", "five",
+           "four", "three", "two", "ace", "king", "queen", "jack", "ten", "nine",
+           "eight", "seven", "six", "five", "four", "three", "two", "ace"),
+  suit = c("spades", "spades", "spades", "spades", "spades", "spades",
+           "spades", "spades", "spades", "spades", "spades", "spades", "spades",
+           "clubs", "clubs", "clubs", "clubs", "clubs", "clubs", "clubs", "clubs",
+           "clubs", "clubs", "clubs", "clubs", "clubs", "diamonds", "diamonds",
+           "diamonds", "diamonds", "diamonds", "diamonds", "diamonds", "diamonds",
+           "diamonds", "diamonds", "diamonds", "diamonds", "diamonds", "hearts",
+           "hearts", "hearts", "hearts", "hearts", "hearts", "hearts", "hearts",
+           "hearts", "hearts", "hearts", "hearts", "hearts"),
+  value = c(13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 13, 12, 11, 10, 9, 8,
+            7, 6, 5, 4, 3, 2, 1, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 13, 12, 11,
+            10, 9, 8, 7, 6, 5, 4, 3, 2, 1),
+  stringsAsFactors = FALSE
+)
+
+# Verificando os primeiros elementos do data set
+
+# Verificando os dois primeiros elementos
+
+head(deck_1, 2)
+
+# Verificando os últimos cinco elementos
+
+tail(deck_1, 5)
