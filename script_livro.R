@@ -287,3 +287,7 @@ head(deck_1, 2)
 # Verificando os últimos cinco elementos
 
 tail(deck_1, 5)
+
+# Salvando data sets
+
+write.csv(deck, file = "cars.csv", row.names = FALSE)
