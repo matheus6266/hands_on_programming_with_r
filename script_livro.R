@@ -238,7 +238,7 @@ as.character(gender)
 card <- c("ace", "hearts", 1)
 
 typeof(card)
-
+class(card)
 
 # Listas conseguem criar vetores com tipos diferentes de dados
 
@@ -291,3 +291,85 @@ tail(deck_1, 5)
 # Salvando data sets
 
 write.csv(deck, file = "cars.csv", row.names = FALSE)
+
+# Capítulo 3
+
+# Selecionando o elemento da primeira linha e primeira coluna
+# Do data set
+
+card1 <- deck[1, 1]
+
+# Selecionando todos os elementos da primeira linha
+
+card1 <- deck[1, c(1,2,3)]
+
+# Ao usar notação negativa você retorna tudo menos o range selecionado
+# Vamos retornar tudo, menos as linha de 1 a 10 da coluna 1 a 3
+
+card1 <- deck[-(1:10), 1:3]
+
+# Ao se usar um espaçõ em branco você seleciona tudo
+# Retorna toda as três colunas da primeira linha
+
+card1 <- deck[1, ]
+
+# Usando operadores logicos para buscar dados no
+# Data frame
+
+card1 <- deck[1, c(TRUE, TRUE, FALSE)]
+
+# Selecionando elementos através dos nomes da colunas
+
+card1 <- deck[1, "value"]
+
+# Função que retorna a primeira linha do data frame
+
+deal <- function(deck){
+  deck[1, ]
+}
+
+deal(deck)
+
+# Criando um novo deck
+
+deck2 <- deck[1:52, ]
+
+# Criando um baralho randomico
+
+random <- sample(1:52, size = 52)
+
+deck4 <- deck[random, ]
+
+head(deck4)
+
+# Criando uma função para gerar um baralho aleatório
+
+shuffle <- function(deck){
+  random <- sample(1:52, size = 52)
+  deck[random, ]
+}
+
+card5 <- shuffle(deck)
+
+head(card5)
+
+# Selecionando todo o valor de uma coluna
+
+card6 <- deck$value
+
+# Realizando operacoe
+
+media <- mean(deck$value)
+
+# O operador $ tambem pode ser usado em listas
+
+lista <- list(numbers = c(1,2), logical = TRUE, strings = c("a", "b", "c"))
+
+# Pegando os valores de numbers
+
+num <- lista$numbers
+
+# Realizando operações com lista
+
+soma <- sum(lista$numbers)
+soma
