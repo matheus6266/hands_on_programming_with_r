@@ -373,3 +373,186 @@ num <- lista$numbers
 
 soma <- sum(lista$numbers)
 soma
+
+# Criando um vetor
+
+vec <- c(0, 0, 0, 0, 0, 0)
+vec
+
+# Selecionando o primeiro elemento do vetor
+
+vec[1]
+
+# Modificando o primeiro elemento do vetor
+
+vec[1] <- 1000
+vec
+
+# Substituindo valores específicos
+
+vec[c(1,3,5)] <- c(1,1,1)
+vec
+
+vec[4:6] <- vec[4:6] + 1
+vec
+
+# criando e adicionando um novo valor para o vetor
+
+vec[7] <- 0
+vec
+
+# adicionando uma nova coluna ao dataset
+
+deck2
+
+deck2$new <- 1:52
+
+# removendo uma coluna do dataset
+
+deck2$new <- NULL
+
+deck2
+
+# modificando os valores dos "ases"
+
+deck2[c(13, 26, 39 ,52), ]
+
+deck2$value[c(13, 26, 39, 52)] <- c(14, 14, 14, 14)
+
+head(deck2, 13)
+
+
+# criando um novo deck
+
+deck3 <- shuffle(deck)
+
+# Comparadores lógicos
+
+logic1 <- 1>2
+
+logic2 <- 1 > c(0, 1, 2)
+
+c(1, 2, 3) == c(3, 2, 1)
+
+
+# o operadora %in% teste elemento por elemento
+# se eles estão contidos no vetor
+
+logi3 <- c(1, 2, 3, 4) %in% c(3, 4, 5)
+
+# verificando a quantidade de "aces" presentes
+
+logic4 <- deck3$face == "ace"
+
+# somando a quantiadade de "aces" no deck
+
+sum(logic4)
+
+# indentificando no dataset onde temo o "ace"
+
+logic5 <- deck3$value[deck3$face == "ace"]
+
+# substituindo os valores do ace por 14
+
+deck3$value[deck3$face == "ace"] <- 14
+
+# verificando a substituicao
+
+head(deck3)
+
+# criando um deck para jogar "hearts"
+
+deck4 <- deck
+
+deck4$value <- 0
+
+head(deck4, 13)
+
+# atribuindo o valor 1 para cada carta de "hearts" do deck
+
+logic6 <- deck4$suit == "hearts"
+
+deck4$value[deck4$suit == "hearts"] <- 1
+
+deck4$value[deck4$suit == "hearts"]
+
+# operadores lógicos
+
+a <- c(1, 2, 3)
+b <- c(1, 2, 3)
+c <- c(1, 2, 4)
+
+# selecionando a "queen of spades"
+
+queenOfSpades <- deck4$face == "queen" & deck4$suit == "spades"
+
+# verificando se a linha esta correta
+
+deck4[queenOfSpades, ]
+
+# atribuindo o valor 13 a queen of spades
+
+deck4$value[queenOfSpades] <- 13
+
+deck4[queenOfSpades, ]
+
+# Exercício de testes lógicos
+
+w <- c(-1, 0, 1)
+x <- c(5, 15)
+y <- "February"
+z <- c("Monday", "Tuesday", "Friday")
+days_week <- c("Sunday", "Monday", "Tuesday", "Wednesday",
+                "Thursday", "Friday", "Saturday")
+
+# w é positivo
+
+teste1 <- w > 0
+
+teste2 <- x > 10 & x <20
+
+teste3 <- y == "February"
+
+teste4 <- z %in% days_week
+
+# criando o jogo black jack
+
+deck5 <- deck
+
+head(deck5, 13)
+
+# selecionando as cartas "king", "queen", "jack"
+
+face_card <- deck5$face %in% c("king", "queen", "jack")
+
+# substituindo os valores 
+
+deck5$value[face_card] <- 10
+
+# verificando a substituicao dos valores
+
+head(deck5, 13)
+
+# nao considerando os "na's" nos calculos
+
+# criando um objeto com "na"
+
+calc <- c(NA, 1:50)
+calc
+
+# nao conseguimos realizar a media, pois temos um valor na no objeto
+
+mean(calc)
+
+# para realizar calculos com objetos com na devemos usar o na.rm = TRUE
+
+mean(c(NA, 1:50), na.rm = TRUE)
+
+# funcao que verifica se há algum NA no objeto
+
+vector_6 <- c(1, 2, 3, NA)
+is.na(vector_6)
+
+# atribuindo o valor NA para o deck de black jack
+
+deck5$value
