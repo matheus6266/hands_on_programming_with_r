@@ -616,15 +616,51 @@ environment(head)
 
 # ajustando a função deal
 
-deck <- deck2
-card_1 <- data
+deck_remove <- deck_original
+deck_shuffle <-deck_remove
 
-deal <- function(){
-  
-  card_1 <- deck[1, ]
-  assign("deck",deck[-1, ], envir = globalenv())
-  card_1
+deal_correct <- function(){
+  card <- deck_remove [1, ]
+  assign("deck_remove", deck_remove[-1, ], envir = globalenv())
+  card
 }
 
+deal_correct()
 
-deal()
+# ajustando a função shuffle
+
+shuffle_correct <- function(){
+  random <- sample(1:52, size = 52)
+  assign("deck_remove", deck_shuffle[random, ], envir = globalenv())
+  
+}
+
+shuffle_correct()
+
+# Cloures
+
+setup <- function(deck){
+  DECK <- deck
+  
+  DEAL <- function(){
+    card <- deck[1, ]
+    assign("deck", deck[-1, ], envir = parent.env(environment()))
+    card
+    
+  }
+  
+  SHUFFLE <- function(){
+    random <- sample(1:52, size = 52)
+    assign("deck", DECK[random, ], envir = parent.env(environment()))
+  }
+  
+list(deal = DEAL, shuffle = SHUFFLE)
+}
+
+cards <- setup(deck_original)
+deal_closures <- cards$deal
+shuffle_closures <- cards$shuffle 
+
+shuffle_closures()
+
+deal_closures()
