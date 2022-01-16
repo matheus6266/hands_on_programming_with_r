@@ -69,13 +69,13 @@ roll
 
 die_2 <- 1:20
 
-roll_2 <- function(die_2){
+roll_with_args <- function(die_2){
   
   dice_2 <- sample(x = die_2, size = 2, replace = TRUE)
   return(sum(dice_2))
 }
 
-roll_2(die_2)  
+roll_with_args(die_2)  
 
 #                                             Capítulo 2  
 
@@ -114,7 +114,7 @@ qplot(rolls, binwidth = 1)
 
 # Criando a função roll com probabilidade
 
-roll_3 <- function(){
+roll_with_probability <- function(){
   
   die_3 <- 1:6
   dice_3 <- sample(die_3, size = 2, replace = TRUE,
@@ -122,8 +122,8 @@ roll_3 <- function(){
   return(sum(dice_3))
 }
 
-rolls1 <- replicate(10000, roll_3)
-qplot(rolls1, binwidth = 1)
+rolls_plot <- replicate(10000, roll_with_probability())
+qplot(rolls_plot, binwidth = 1)
 
 # Capítulo 3
 
@@ -257,7 +257,7 @@ df
 
 # Criando o baralho manualmente
 
-deck <- data.frame(
+deck_original <- data.frame(
   face = c("king", "queen", "jack", "ten", "nine", "eight", "seven", "six",
            "five", "four", "three", "two", "ace", "king", "queen", "jack", "ten",
            "nine", "eight", "seven", "six", "five", "four", "three", "two", "ace",
@@ -282,11 +282,11 @@ deck <- data.frame(
 
 # Verificando os dois primeiros elementos
 
-head(deck_1, 2)
+head(deck_original, 2)
 
 # Verificando os últimos cinco elementos
 
-tail(deck_1, 5)
+tail(deck_original, 5)
 
 # Salvando data sets
 
@@ -297,30 +297,30 @@ write.csv(deck, file = "cars.csv", row.names = FALSE)
 # Selecionando o elemento da primeira linha e primeira coluna
 # Do data set
 
-card1 <- deck[1, 1]
+card1 <- deck_original[1, 1]
 
 # Selecionando todos os elementos da primeira linha
 
-card1 <- deck[1, c(1,2,3)]
+card1 <- deck_original[1, c(1,2,3)]
 
 # Ao usar notação negativa você retorna tudo menos o range selecionado
 # Vamos retornar tudo, menos as linha de 1 a 10 da coluna 1 a 3
 
-card1 <- deck[-(1:10), 1:3]
+card1 <- deck_original[-(1:10), 1:3]
 
 # Ao se usar um espaçõ em branco você seleciona tudo
 # Retorna toda as três colunas da primeira linha
 
-card1 <- deck[1, ]
+card1 <- deck_original[1, ]
 
 # Usando operadores logicos para buscar dados no
 # Data frame
 
-card1 <- deck[1, c(TRUE, TRUE, FALSE)]
+card1 <- deck_original[1, c(TRUE, TRUE, FALSE)]
 
 # Selecionando elementos através dos nomes da colunas
 
-card1 <- deck[1, "value"]
+card1 <- deck_original[1, "value"]
 
 # Função que retorna a primeira linha do data frame
 
@@ -328,19 +328,19 @@ deal <- function(deck){
   deck[1, ]
 }
 
-deal(deck)
+deal(deck_original)
 
 # Criando um novo deck
 
-deck2 <- deck[1:52, ]
+deck_war <- deck_original[1:52, ]
 
 # Criando um baralho randomico
 
 random <- sample(1:52, size = 52)
 
-deck4 <- deck[random, ]
+deck_ramdom <- deck_original[random, ]
 
-head(deck4)
+head(deck_ramdom)
 
 # Criando uma função para gerar um baralho aleatório
 
@@ -349,17 +349,17 @@ shuffle <- function(deck){
   deck[random, ]
 }
 
-card5 <- shuffle(deck)
+deck_ramdom <- shuffle(deck_original)
 
-head(card5)
+head(deck_ramdom)
 
 # Selecionando todo o valor de uma coluna
 
-card6 <- deck$value
+deck_original_colum <- deck_original$value
 
 # Realizando operacoe
 
-media <- mean(deck$value)
+media <- mean(deck_original$value)
 
 # O operador $ tambem pode ser usado em listas
 
@@ -403,28 +403,28 @@ vec
 
 # adicionando uma nova coluna ao dataset
 
-deck2
+deck_war
 
-deck2$new <- 1:52
+deck_war$new <- 1:52
 
 # removendo uma coluna do dataset
 
-deck2$new <- NULL
+deck_war$new <- NULL
 
-deck2
+deck_war
 
 # modificando os valores dos "ases"
 
-deck2[c(13, 26, 39 ,52), ]
+deck_war[c(13, 26, 39 ,52), ]
 
-deck2$value[c(13, 26, 39, 52)] <- c(14, 14, 14, 14)
+deck_war$value[c(13, 26, 39, 52)] <- c(14, 14, 14, 14)
 
-head(deck2, 13)
+head(deck_war, 13)
 
 
 # criando um novo deck
 
-deck3 <- shuffle(deck)
+deck_war_random <- shuffle(deck_original)
 
 # Comparadores lógicos
 
@@ -440,9 +440,11 @@ c(1, 2, 3) == c(3, 2, 1)
 
 logi3 <- c(1, 2, 3, 4) %in% c(3, 4, 5)
 
+logi3
+
 # verificando a quantidade de "aces" presentes
 
-logic4 <- deck3$face == "ace"
+logic4 <- deck_war_random$face == "ace"
 
 # somando a quantiadade de "aces" no deck
 
@@ -450,31 +452,31 @@ sum(logic4)
 
 # indentificando no dataset onde temo o "ace"
 
-logic5 <- deck3$value[deck3$face == "ace"]
+logic5 <- deck_war_random$value[deck_war_random$face == "ace"]
 
 # substituindo os valores do ace por 14
 
-deck3$value[deck3$face == "ace"] <- 14
+deck_war_random$value[deck_war_random$face == "ace"] <- 14
 
 # verificando a substituicao
 
-head(deck3)
+head(deck_war_random,52)
 
 # criando um deck para jogar "hearts"
 
-deck4 <- deck
+deck_hearts <- deck_original
 
-deck4$value <- 0
+deck_hearts$value <- 0
 
-head(deck4, 13)
+head(deck_hearts, 13)
 
 # atribuindo o valor 1 para cada carta de "hearts" do deck
 
-logic6 <- deck4$suit == "hearts"
+logic6 <- deck_hearts$suit == "hearts"
 
-deck4$value[deck4$suit == "hearts"] <- 1
+deck_hearts$value[deck_hearts$suit == "hearts"] <- 1
 
-deck4$value[deck4$suit == "hearts"]
+deck_hearts$value[deck_hearts$suit == "hearts"]
 
 # operadores lógicos
 
@@ -484,17 +486,21 @@ c <- c(1, 2, 4)
 
 # selecionando a "queen of spades"
 
-queenOfSpades <- deck4$face == "queen" & deck4$suit == "spades"
+queenOfSpades <- deck_hearts$face == "queen" & deck_hearts$suit == "spades"
 
 # verificando se a linha esta correta
 
-deck4[queenOfSpades, ]
+deck_hearts[queenOfSpades, ]
+
+# exemplo 
+
+deck_hearts[c(FALSE,FALSE,FALSE,FALSE,FALSE,TRUE), ]
 
 # atribuindo o valor 13 a queen of spades
 
-deck4$value[queenOfSpades] <- 13
+deck_hearts$value[queenOfSpades] <- 13
 
-deck4[queenOfSpades, ]
+deck_hearts[queenOfSpades, ]
 
 # Exercício de testes lógicos
 
@@ -517,21 +523,21 @@ teste4 <- z %in% days_week
 
 # criando o jogo black jack
 
-deck5 <- deck
+deck_black_jack <- deck_original
 
-head(deck5, 13)
+head(deck_black_jack, 13)
 
 # selecionando as cartas "king", "queen", "jack"
 
-face_card <- deck5$face %in% c("king", "queen", "jack")
+face_card <- deck_black_jack$face %in% c("king", "queen", "jack")
 
 # substituindo os valores 
 
-deck5$value[face_card] <- 10
+deck_black_jack$value[face_card] <- 10
 
 # verificando a substituicao dos valores
 
-head(deck5, 13)
+head(deck_black_jack, 13)
 
 # nao considerando os "na's" nos calculos
 
@@ -555,4 +561,70 @@ is.na(vector_6)
 
 # atribuindo o valor NA para o deck de black jack
 
-deck5$value
+deck_black_jack$value[deck_black_jack$face == "ace"] <- NA
+
+head(deck_black_jack, 13)
+
+deal
+shuffle
+
+# Capítulo 6
+
+# Trabalhando com environment
+
+install.packages("devtools")
+install.packages("pryr")
+library(devtools)
+library(pryr)
+parenvs(all = TRUE)
+
+# verificando um environment específico
+
+as.environment("package:stats")
+
+# funções environment
+
+globalenv()
+
+baseenv()
+
+emptyenv()
+
+# função para verificar the environment's parent
+
+parent.env(globalenv())
+
+# verificando informações sobre os objetos do globa environment
+
+ls(globalenv())
+
+ls.str(globalenv())
+
+# acessando objetos específicos através do global envirnment
+
+head(globalenv()$deck, 3)
+
+# criando e salvando um objeto no environmnet
+
+assign("new", "Hello Global", envir = globalenv())
+
+globalenv()$new
+
+# verificando o origin environment
+
+environment(head)
+
+# ajustando a função deal
+
+deck <- deck2
+card_1 <- data
+
+deal <- function(){
+  
+  card_1 <- deck[1, ]
+  assign("deck",deck[-1, ], envir = globalenv())
+  card_1
+}
+
+
+deal()
