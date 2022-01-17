@@ -661,6 +661,47 @@ cards <- setup(deck_original)
 deal_closures <- cards$deal
 shuffle_closures <- cards$shuffle 
 
+
 shuffle_closures()
 
 deal_closures()
+
+## chapter 8
+
+one_play <- play_attribute()
+
+# verificando os atributos de one_play
+
+attributes(one_play)
+
+# atribuindo atributos a um objeto
+
+attr(one_play, "symbols") <- c("B", "0", "B")
+
+# verificando o valor de cada atributo
+
+attr(one_play, "symbols")
+
+# criando um print que printa a classe slots
+
+# atribuindo classe ao one_play
+
+class(one_play) <- "slots"
+
+print.slots <- function(x, ...){
+  cat("I'm using the print.slots method")
+}
+
+print.slots(one_play)
+
+# remover funcao
+
+rm(print.slots)
+
+# criando a funcao final
+
+print.slots <- function(x, ...){
+  slot_dysplay(x)
+}
+
+one_play
