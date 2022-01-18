@@ -15,7 +15,7 @@ score <- function(symbols){
   }else {
     
     cherries <- sum(symbols == "C")
-    prize <- c(0, 2, 5)[cherries_double + 1]
+    prize <- c(0, 2, 5)[cherries + 1]
     
   }
   
